@@ -39,7 +39,7 @@ export default function FloatingCupid() {
     }
 
     function randomSpeed() {
-      return 1.5 + Math.random() * 2;
+      return 0.5 + Math.random() * 0.8;
     }
 
     let targetX = randomX();
