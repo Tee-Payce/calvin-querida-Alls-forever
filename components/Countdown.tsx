@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 
 const TARGET = new Date("2027-02-06T10:00:00Z").getTime();

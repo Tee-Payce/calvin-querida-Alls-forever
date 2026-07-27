@@ -1,15 +1,16 @@
-.floating-cupid {
+.floating-cupid-wrapper {
   position: fixed;
   width: 90px;
+  height: 90px;
   pointer-events: none;
   user-select: none;
   z-index: 9999;
-
-  animation:
-    bob 2.2s ease-in-out infinite,
-    flap 0.4s ease-in-out infinite alternate;
-
   will-change: left, top, transform;
+}
+
+.floating-cupid {
+  width: 90px;
+  animation: bob 2.2s ease-in-out infinite;
 }
 
 .cupid-arrow {
@@ -17,30 +18,11 @@
   width: 42px;
   pointer-events: none;
   z-index: 9998;
-
   will-change: left, top, transform;
 }
 
 @keyframes bob {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-8px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-@keyframes flap {
-  from {
-    scale: 1;
-  }
-
-  to {
-    scale: 0.97;
-  }
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
 }

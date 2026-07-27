@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 const cupid = "/cupid.png";
 const arrow = "/arrow.png";
@@ -18,31 +19,16 @@ interface Arrow {
 const CUPID_SIZE = 90;
 
 export default function FloatingCupid() {
-  const [position, setPosition] = useState<Position>({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
-  });
-
+  const [position, setPosition] = useState<Position>({ x: -200, y: -200 });
   const [rotation, setRotation] = useState(0);
   const [arrows, setArrows] = useState<Arrow[]>([]);
-
   const angleRef = useRef(0);
-  const positionRef = useRef(position);
-
-  useEffect(() => {
-    positionRef.current = position;
-  }, [position]);
 
   useEffect(() => {
     let frame: number;
 
-    let x = positionRef.current.x;
-    let y = positionRef.current.y;
-
-    let targetX = randomX();
-    let targetY = randomY();
-
-    let speed = randomSpeed();
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
 
     function randomX() {
       return Math.random() * (window.innerWidth - CUPID_SIZE);
@@ -53,8 +39,13 @@ export default function FloatingCupid() {
     }
 
     function randomSpeed() {
-  return 0.5 + Math.random() * 0.8;
-}
+      return 1.5 + Math.random() * 2;
+    }
+
+    let targetX = randomX();
+    let targetY = randomY();
+    let speed = randomSpeed();
+
     function chooseNewTarget() {
       targetX = randomX();
       targetY = randomY();
@@ -133,16 +124,12 @@ export default function FloatingCupid() {
 
   return (
     <>
-      <img
-        src={cupid as string}
-        alt="Cupid"
-        className="floating-cupid"
-        style={{
-          left: position.x,
-          top: position.y,
-          transform: `rotate(${rotation}deg)`,
-        }}
-      />
+      <div
+        className="floating-cupid-wrapper"
+        style={{ left: position.x, top: position.y, transform: `rotate(${rotation}deg)` }}
+      >
+        <img src={cupid} alt="Cupid" className="floating-cupid" />
+      </div>
 
       {/* {arrows.map((arrow) => (
         <FlyingArrow key={arrow.id} {...arrow} />
