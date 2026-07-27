@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import envelopeVideo from "@/assets/ENVELOPE4.mp4";
 
 interface EnvelopeProps {
   onOpen: () => void;
@@ -33,7 +32,7 @@ export function Envelope({ onOpen }: EnvelopeProps) {
       {/* ── Video — always mounted, plays fullscreen behind everything ── */}
       <video
         ref={videoRef}
-        src={envelopeVideo}
+        src="/ENVELOPE4.mp4"
         className="absolute inset-0 h-full w-full object-cover"
         playsInline
         preload="auto"

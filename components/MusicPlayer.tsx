@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import music from "@/assets/background_music2.mp3";
 
 interface MusicPlayerProps {
   /** Call this from the parent once the envelope has finished */
@@ -15,7 +14,7 @@ export function MusicPlayer({ autoPlay = false }: MusicPlayerProps) {
 
   // Create the audio element once
   useEffect(() => {
-    const audio = new Audio(music);
+    const audio = new Audio("/background_music2.mp3");
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import cupid from "../assets/cupid.png";
-import arrow from "../assets/arrow.png";
+const cupid = "/cupid.png";
+const arrow = "/arrow.png";
 import "./FloatingCupid.css";
 
 interface Position {
@@ -134,7 +134,7 @@ export default function FloatingCupid() {
   return (
     <>
       <img
-        src={cupid}
+        src={cupid as string}
         alt="Cupid"
         className="floating-cupid"
         style={{
@@ -187,7 +187,7 @@ function FlyingArrow({ x, y, angle }: FlyingArrowProps) {
 
   return (
     <img
-      src={arrow}
+      src={arrow as string}
       className="cupid-arrow"
       alt=""
       style={{
