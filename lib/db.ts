@@ -4,7 +4,10 @@ let _sql: ReturnType<typeof postgres> | null = null;
 
 function getDb() {
   if (!_sql) {
-    _sql = postgres(process.env.DATABASE_URL!, {
+    // Strip any accidental wrapping (quotes, prefix) that may come from env var misconfiguration
+    const raw = process.env.DATABASE_URL ?? "";
+    const url = raw.replace(/^DATABASE_URL=/, "").replace(/^"|"$/g, "").replace(/^'|'$/g, "").trim();
+    _sql = postgres(url, {
       ssl: { rejectUnauthorized: false },
       max: 1,
       prepare: false,
