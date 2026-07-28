@@ -35,23 +35,29 @@ export async function POST(req: NextRequest) {
   }
 
   const d = parsed.data;
-  const row = await insertRsvp({
-    full_name:    d.fullName,
-    attendance:   d.attendance,
-    partner_name: d.partnerName || null,
-    contact:      d.contact,
-    dietary:      d.dietary     || null,
-    song:         d.song        || null,
-  });
 
-  sendRsvpEmail({
-    full_name:    d.fullName,
-    attendance:   d.attendance,
-    partner_name: d.partnerName || null,
-    contact:      d.contact,
-    dietary:      d.dietary     || null,
-    song:         d.song        || null,
-  }).catch((err) => console.error("[email] Failed:", err));
+  try {
+    const row = await insertRsvp({
+      full_name:    d.fullName,
+      attendance:   d.attendance,
+      partner_name: d.partnerName || null,
+      contact:      d.contact,
+      dietary:      d.dietary     || null,
+      song:         d.song        || null,
+    });
 
-  return NextResponse.json({ ok: true, id: row.id }, { status: 201 });
+    sendRsvpEmail({
+      full_name:    d.fullName,
+      attendance:   d.attendance,
+      partner_name: d.partnerName || null,
+      contact:      d.contact,
+      dietary:      d.dietary     || null,
+      song:         d.song        || null,
+    }).catch((err) => console.error("[email] Failed:", err));
+
+    return NextResponse.json({ ok: true, id: row.id }, { status: 201 });
+  } catch (err) {
+    console.error("[rsvp] POST failed:", err);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
