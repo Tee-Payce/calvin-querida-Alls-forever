@@ -48,14 +48,19 @@ export async function POST(req: NextRequest) {
       song:         d.song        || null,
     });
 
-    sendRsvpEmail({
-      full_name:    d.fullName,
-      attendance:   d.attendance,
-      partner_name: d.partnerName || null,
-      contact:      d.contact,
-      dietary:      d.dietary     || null,
-      song:         d.song        || null,
-    }).catch((err) => console.error("[email] Failed:", err));
+    try {
+      await sendRsvpEmail({
+        full_name:    d.fullName,
+        attendance:   d.attendance,
+        partner_name: d.partnerName || null,
+        contact:      d.contact,
+        dietary:      d.dietary     || null,
+        song:         d.song        || null,
+      });
+      console.log("[email] Sent successfully");
+    } catch (emailErr) {
+      console.error("[email] Failed:", JSON.stringify(emailErr));
+    }
 
     return NextResponse.json({ ok: true, id: row.id }, { status: 201 });
   } catch (err) {

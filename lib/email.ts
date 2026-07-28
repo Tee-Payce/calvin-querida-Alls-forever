@@ -65,6 +65,7 @@ export async function sendRsvpEmail(data: RsvpEmailData) {
     subject: `RSVP ${attending ? "✅ Accept" : "❌ Decline"} — ${data.full_name}`,
     html,
   });
+  console.log("[email] Resend result:", JSON.stringify(result));
   if (result.error) {
     throw new Error(`Resend error: ${JSON.stringify(result.error)}`);
   }
