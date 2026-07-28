@@ -1,10 +1,17 @@
 import postgres from "postgres";
 
-const sql = postgres(process.env.DATABASE_URL!, {
-  ssl: { rejectUnauthorized: false },
-  max: 1,
-  prepare: false, // required for Supabase transaction pooler (pgBouncer)
-});
+let _sql: ReturnType<typeof postgres> | null = null;
+
+function getDb() {
+  if (!_sql) {
+    _sql = postgres(process.env.DATABASE_URL!, {
+      ssl: { rejectUnauthorized: false },
+      max: 1,
+      prepare: false,
+    });
+  }
+  return _sql;
+}
 
 export interface Rsvp {
   id: number;
@@ -18,6 +25,7 @@ export interface Rsvp {
 }
 
 export async function insertRsvp(data: Omit<Rsvp, "id" | "submitted_at">) {
+  const sql = getDb();
   const rows = await sql<{ id: number }[]>`
     INSERT INTO rsvps (full_name, attendance, partner_name, contact, dietary, song)
     VALUES (${data.full_name}, ${data.attendance}, ${data.partner_name}, ${data.contact}, ${data.dietary}, ${data.song})
@@ -27,6 +35,7 @@ export async function insertRsvp(data: Omit<Rsvp, "id" | "submitted_at">) {
 }
 
 export async function getAllRsvps() {
+  const sql = getDb();
   const rows = await sql<Rsvp[]>`SELECT * FROM rsvps ORDER BY submitted_at DESC`;
   return rows;
 }

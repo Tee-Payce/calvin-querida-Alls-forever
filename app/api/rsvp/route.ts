@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import { z } from "zod";
 import { insertRsvp, getAllRsvps } from "@/lib/db";
 import { sendRsvpEmail } from "@/lib/email";
