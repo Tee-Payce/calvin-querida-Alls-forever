@@ -99,7 +99,7 @@ export function HomePage() {
                 />
               </div>
 
-              <div className="relative z-10 mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-end px-6 pb-30 pt-50 text-center text-foreground">
+              <div className="relative z-10 mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-end px-6 pb-40 pt-50 text-center text-foreground">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -254,7 +254,7 @@ export function HomePage() {
             <section className="mx-auto max-w-4xl px-6 py-8 text-center">
               <SectionHeading eyebrow="Memories" title="Our Forever Begins Now" />
               <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6">
-                {["/cc01.JPG", "/cc02.jpg", "/cc03.jpg", "/cc05.jpg", "/cc04.jpg", "/cc06.JPG"].map((src, i) => (
+                {["/cc01.JPG", "/cc02.jpg", "/cc03.jpg", "/cc05.jpg", "/cc04.jpg", "/couple.png"].map((src, i) => (
                   <div
                     key={i}
                     className={[i === 3 ? "md:col-start-1" : "", i === 4 ? "md:col-start-2" : ""].join(" ").trim()}
