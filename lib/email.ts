@@ -1,7 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface RsvpEmailData {
   full_name: string;
   attendance: string;
@@ -13,6 +11,7 @@ interface RsvpEmailData {
 }
 
 export async function sendRsvpEmail(data: RsvpEmailData) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const attending = data.attendance === "accept";
   const status = attending ? "✅ Joyfully Accepts" : "❌ Regretfully Declines";
 
@@ -60,7 +59,7 @@ export async function sendRsvpEmail(data: RsvpEmailData) {
   `;
 
   const result = await resend.emails.send({
-    from: "Calvin & Querida RSVP <onboarding@resend.dev>",
+    from: process.env.RESEND_FROM ?? "Calvin & Querida RSVP <onboarding@resend.dev>",
     to: process.env.EMAIL_TO!,
     subject: `RSVP ${attending ? "✅ Accept" : "❌ Decline"} — ${data.full_name}`,
     html,
