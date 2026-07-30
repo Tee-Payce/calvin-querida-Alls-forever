@@ -1,4 +1,4 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 interface RsvpEmailData {
   full_name: string;
@@ -11,7 +11,14 @@ interface RsvpEmailData {
 }
 
 export async function sendRsvpEmail(data: RsvpEmailData) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  });
+
   const attending = data.attendance === "accept";
   const status = attending ? "✅ Joyfully Accepts" : "❌ Regretfully Declines";
 
@@ -58,14 +65,10 @@ export async function sendRsvpEmail(data: RsvpEmailData) {
     </div>
   `;
 
-  const result = await resend.emails.send({
-    from: process.env.RESEND_FROM ?? "Calvin & Querida RSVP <onboarding@resend.dev>",
+  await transporter.sendMail({
+    from: `"Calvin & Querida RSVP" <${process.env.GMAIL_USER}>`,
     to: process.env.EMAIL_TO!,
     subject: `RSVP ${attending ? "✅ Accept" : "❌ Decline"} — ${data.full_name}`,
     html,
   });
-  console.log("[email] Resend result:", JSON.stringify(result));
-  if (result.error) {
-    throw new Error(`Resend error: ${JSON.stringify(result.error)}`);
-  }
 }
