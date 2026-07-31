@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-const cupid = "/cupid.png";
+const cupid = "/cupidd.png";
 import "./FloatingCupid.css";
 
 const CUPID_SIZE = 90;
