@@ -1,7 +1,7 @@
 {
   "functions": {
     "app/api/rsvp/route.ts": {
-      "regions": ["jnb1"]
+      "regions": ["cpt1"]
     }
   }
 }
