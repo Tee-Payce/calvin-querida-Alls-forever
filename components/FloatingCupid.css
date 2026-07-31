@@ -5,12 +5,14 @@
   pointer-events: none;
   user-select: none;
   z-index: 9999;
-  will-change: left, top, transform;
+  will-change: left, top;
+  transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              top  0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .floating-cupid {
   width: 90px;
-  animation: bob 2.2s ease-in-out infinite;
+  animation: bob 3.5s ease-in-out infinite;
 }
 
 .cupid-arrow {
@@ -23,6 +25,6 @@
 
 @keyframes bob {
   0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-8px); }
+  50%  { transform: translateY(-6px); }
   100% { transform: translateY(0px); }
 }

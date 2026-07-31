@@ -20,7 +20,6 @@ const CUPID_SIZE = 90;
 
 export default function FloatingCupid() {
   const [position, setPosition] = useState<Position>({ x: -200, y: -200 });
-  const [rotation, setRotation] = useState(0);
   const [arrows, setArrows] = useState<Arrow[]>([]);
   const angleRef = useRef(0);
 
@@ -39,7 +38,7 @@ export default function FloatingCupid() {
     }
 
     function randomSpeed() {
-      return 0.5 + Math.random() * 0.8;
+      return 0.2 + Math.random() * 0.3;
     }
 
     let targetX = randomX();
@@ -71,12 +70,7 @@ export default function FloatingCupid() {
       x = Math.max(0, Math.min(window.innerWidth - CUPID_SIZE, x));
       y = Math.max(0, Math.min(window.innerHeight - CUPID_SIZE, y));
 
-      setPosition({
-        x,
-        y,
-      });
-
-      setRotation((angle * 180) / Math.PI);
+      setPosition({ x, y });
 
       frame = requestAnimationFrame(animate);
     }
@@ -126,7 +120,7 @@ export default function FloatingCupid() {
     <>
       <div
         className="floating-cupid-wrapper"
-        style={{ left: position.x, top: position.y, transform: `rotate(${rotation}deg)` }}
+        style={{ left: position.x, top: position.y }}
       >
         <img src={cupid} alt="Cupid" className="floating-cupid" />
       </div>
