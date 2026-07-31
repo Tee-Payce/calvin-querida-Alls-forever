@@ -15,6 +15,9 @@ const schema = z.object({
 });
 
 export async function GET(req: NextRequest) {
+  if (req.headers.get("x-warmup")) {
+    return NextResponse.json({ ok: true }, { status: 200 });
+  }
   const token = req.nextUrl.searchParams.get("token");
   if (token !== process.env.ADMIN_TOKEN) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

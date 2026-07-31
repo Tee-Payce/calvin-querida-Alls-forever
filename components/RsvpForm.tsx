@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 
@@ -20,6 +20,11 @@ export function RsvpForm() {
   const [errors,      setErrors]      = useState<FormErrors>({});
   const [attendance,  setAttendance]  = useState<"accept" | "decline">("accept");
   const [withPartner, setWithPartner] = useState(false);
+
+  // Warm up the serverless function before the user submits
+  useEffect(() => {
+    fetch("/api/rsvp", { method: "GET", headers: { "x-warmup": "1" } }).catch(() => {});
+  }, []);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
