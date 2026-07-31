@@ -4,6 +4,7 @@ const cupid = "/cupid.png";
 import "./FloatingCupid.css";
 
 const CUPID_SIZE = 90;
+const SPEED = 0.6;
 
 export default function FloatingCupid() {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -14,35 +15,22 @@ export default function FloatingCupid() {
     let x = window.innerWidth / 2;
     let y = window.innerHeight / 2;
 
-    let targetX = randomX();
-    let targetY = randomY();
-    let speed = randomSpeed();
-
-    function randomX() { return CUPID_SIZE + Math.random() * (window.innerWidth - CUPID_SIZE * 2); }
-    function randomY() { return CUPID_SIZE + Math.random() * (window.innerHeight - CUPID_SIZE * 2); }
-    function randomSpeed() { return 0.4 + Math.random() * 0.5; }
-
-    function chooseNewTarget() {
-      // Pick a target on the opposite side of the screen for wide coverage
-      const margin = CUPID_SIZE;
-      targetX = margin + Math.random() * (window.innerWidth - margin * 2);
-      targetY = margin + Math.random() * (window.innerHeight - margin * 2);
-      speed = randomSpeed();
-    }
+    // Start moving in a random diagonal direction
+    const angle = Math.random() * Math.PI * 2;
+    let vx = Math.cos(angle) * SPEED;
+    let vy = Math.sin(angle) * SPEED;
 
     function animate() {
-      const dx = targetX - x;
-      const dy = targetY - y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      x += vx;
+      y += vy;
 
-      if (distance < 40) chooseNewTarget();
+      // Bounce off left/right edges
+      if (x <= 0) { x = 0; vx = Math.abs(vx); }
+      if (x >= window.innerWidth - CUPID_SIZE) { x = window.innerWidth - CUPID_SIZE; vx = -Math.abs(vx); }
 
-      const angle = Math.atan2(dy, dx);
-      x += Math.cos(angle) * speed;
-      y += Math.sin(angle) * speed;
-
-      x = Math.max(0, Math.min(window.innerWidth - CUPID_SIZE, x));
-      y = Math.max(0, Math.min(window.innerHeight - CUPID_SIZE, y));
+      // Bounce off top/bottom edges
+      if (y <= 0) { y = 0; vy = Math.abs(vy); }
+      if (y >= window.innerHeight - CUPID_SIZE) { y = window.innerHeight - CUPID_SIZE; vy = -Math.abs(vy); }
 
       if (wrapperRef.current) {
         wrapperRef.current.style.left = `${x}px`;
@@ -54,8 +42,6 @@ export default function FloatingCupid() {
 
     animate();
 
-    const wander = setInterval(chooseNewTarget, 6000);
-
     const resize = () => {
       x = Math.min(x, window.innerWidth - CUPID_SIZE);
       y = Math.min(y, window.innerHeight - CUPID_SIZE);
@@ -64,7 +50,6 @@ export default function FloatingCupid() {
 
     return () => {
       cancelAnimationFrame(frame);
-      clearInterval(wander);
       window.removeEventListener("resize", resize);
     };
   }, []);
