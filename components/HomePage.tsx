@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import dynamic from "next/dynamic";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Envelope } from "@/components/Envelope";
 import { Countdown } from "@/components/Countdown";
@@ -15,7 +16,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Toaster } from "@/components/ui/sonner";
-import FloatingCupid from "@/components/FloatingCupid";
+
+const FloatingCupid = dynamic(() => import("@/components/FloatingCupid"), { ssr: false });
 
 function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string }) {
   return (
@@ -45,7 +47,7 @@ export function HomePage() {
       <FloatingCupid />
       <Toaster position="top-center" />
 
-      <audio ref={audioRef} src="/background_music2.mp3" loop />
+      <audio ref={audioRef} src="/background_music2.mp3" loop preload="none" />
 
       <button
         onClick={() => setPlaying(p => !p)}
@@ -96,6 +98,7 @@ export function HomePage() {
                   muted
                   loop
                   playsInline
+                  preload="none"
                 />
               </div>
 
