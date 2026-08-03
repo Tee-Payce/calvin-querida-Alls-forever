@@ -33,7 +33,7 @@ export function Envelope({ onOpen }: EnvelopeProps) {
       {/* ── Video — always mounted, plays fullscreen behind everything ── */}
       <video
         ref={videoRef}
-        src="/ENVELOPE4.mp4"
+        src="/ENVELOPE6.mp4"
         className="absolute inset-0 h-full w-full object-cover"
         playsInline
         preload="auto"
