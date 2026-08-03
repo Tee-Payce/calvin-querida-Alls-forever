@@ -123,32 +123,32 @@ export function RsvpForm() {
           ))}
         </div>
       </div>
-
-      {/* Partner */}
-      <div>
-        <label className="flex items-center gap-3 text-sm text-foreground/80">
-          <input
-            type="checkbox"
-            checked={withPartner}
-            onChange={(e) => setWithPartner(e.target.checked)}
-            disabled={loading}
-            className="h-4 w-4 accent-[color:var(--gold)]"
-          />
-          I am attending with a partner
-        </label>
-        {withPartner && (
-          <div className="mt-4">
-            <label className={label}>Partner&apos;s Full Name</label>
+      {attendance === "accept" && (
+        <div>
+          {/* Partner */}
+          <label className="flex items-center gap-3 text-sm text-foreground/80">
             <input
-              name="partnerName"
-              className={field}
-              placeholder="Partner's name"
+              type="checkbox"
+              checked={withPartner}
+              onChange={(e) => setWithPartner(e.target.checked)}
               disabled={loading}
+              className="h-4 w-4 accent-[color:var(--gold)]"
             />
-          </div>
-        )}
-      </div>
-
+            I am attending with a partner
+          </label>
+          {withPartner && (
+            <div className="mt-4">
+              <label className={label}>Partner&apos;s Full Name</label>
+              <input
+                name="partnerName"
+                className={field}
+                placeholder="Partner's name"
+                disabled={loading}
+              />
+            </div>
+          )}
+        </div>
+      )}
       {/* Contact */}
       <div>
         <label className={label}>Email or Phone *</label>
@@ -163,27 +163,31 @@ export function RsvpForm() {
         )}
       </div>
 
-      {/* Dietary */}
-      <div>
-        <label className={label}>Dietary Requirements</label>
-        <input
-          name="dietary"
-          className={field}
-          placeholder="Allergies or preferences (optional)"
-          disabled={loading}
-        />
-      </div>
+      {attendance === "accept" && (
+        <>
+          {/* Dietary */}
+          <div>
+            <label className={label}>Dietary Requirements</label>
+            <input
+              name="dietary"
+              className={field}
+              placeholder="Allergies or preferences (optional)"
+              disabled={loading}
+            />
+          </div>
 
-      {/* Song request */}
-      <div>
-        <label className={label}>Song Request</label>
-        <input
-          name="song"
-          className={field}
-          placeholder="A song to make you dance (optional)"
-          disabled={loading}
-        />
-      </div>
+          {/* Song request */}
+          <div>
+            <label className={label}>Song Request</label>
+            <input
+              name="song"
+              className={field}
+              placeholder="A song to make you dance (optional)"
+              disabled={loading}
+            />
+          </div>
+        </>
+      )}
 
       {/* Submit */}
       <div className="pt-4 text-center">
