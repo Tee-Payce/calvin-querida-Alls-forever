@@ -294,7 +294,7 @@ export function HomePage() {
                   indicated on your invitation.
                 </p>
                 <p className="mb-4 text-center text-sm italic text-muted-foreground">
-                  if ypu are unable to attend, we would still love to hear from you. Please let us know by filling out the RSVP form, this will help us with our planning as we have limited capacity at the venue. We appreciate your understanding and support.
+                  if you are unable to attend, we would still love to hear from you. Please let us know by filling out the RSVP form, this will help us with our planning as we have limited capacity at the venue. We appreciate your understanding and support.
                 </p>
                 <RsvpForm />
               </div>
