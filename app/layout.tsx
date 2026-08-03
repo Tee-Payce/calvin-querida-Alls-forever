@@ -21,7 +21,8 @@ const pinyon = Pinyon_Script({
   weight: "400",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://calvin-querida.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://calvin-querida.vercel.app");
+const previewImageUrl = new URL("/cc01.JPG?v=2", siteUrl).toString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/cc01.JPG",
+        url: previewImageUrl,
         width: 1200,
         height: 630,
         alt: "Calvin and Querida",
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Calvin & Querida — 6 February 2027",
     description: "You are cordially invited to celebrate the wedding of Calvin and Querida.",
-    images: ["/cc01.JPG"],
+    images: [previewImageUrl],
   },
 };
 
