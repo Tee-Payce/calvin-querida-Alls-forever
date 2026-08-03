@@ -34,6 +34,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "Calvin & Querida",
     type: "website",
+    locale: "en_US",
     images: [
       {
         url: previewImageUrl,
@@ -48,6 +49,9 @@ export const metadata: Metadata = {
     title: "Calvin & Querida — 6 February 2027",
     description: "You are cordially invited to celebrate the wedding of Calvin and Querida.",
     images: [previewImageUrl],
+  },
+  alternates: {
+    canonical: siteUrl,
   },
 };
 
