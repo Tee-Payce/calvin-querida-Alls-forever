@@ -22,7 +22,7 @@ const pinyon = Pinyon_Script({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://calvin-querida.vercel.app");
-const previewImageUrl = new URL("/og-image.jpg?v=4", siteUrl).toString();
+const previewImageUrl = `${siteUrl.replace(/\/$/, "")}/og-image.jpg?v=5`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
