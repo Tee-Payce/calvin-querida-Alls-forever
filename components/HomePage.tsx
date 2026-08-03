@@ -21,7 +21,7 @@ function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: string })
   return (
     <div className="mb-12 text-center">
       {eyebrow && (
-        <p className="mb-3 text-[0.7rem] tracking-[0.5em] uppercase text-gold">{eyebrow}</p>
+        <p className="mb-3 text-[0.9rem] tracking-[0.5em] uppercase text-gold">{eyebrow}</p>
       )}
       <h2 className="font-display text-4xl md:text-5xl italic text-foreground">{title}</h2>
       <div className="gold-line mx-auto mt-6 w-24" />
@@ -104,7 +104,7 @@ export function HomePage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 1.2 }}
-                  className="mt-1 italic text-lg md:text-lg"
+                  className="mt-1 italic text-xl md:text-xl"
                   style={{ lineHeight: 1, color: "#3B3A2E" }}
                 >
                   Calvin <span style={{ color: "#5B6142" }}>&</span> Querida
@@ -160,7 +160,7 @@ export function HomePage() {
                 <img src="/string-lights.png" alt="Floral decoration" className="w-full object-contain mb-10" />
               </div>
 
-              <SectionHeading eyebrow="6 · Feb · 2027" title="Schedule of the Day" />
+              <SectionHeading eyebrow="6 · February · 2027" title="Schedule of the Day" />
 
               <div className="relative mx-auto max-w-sm">
                 {[
