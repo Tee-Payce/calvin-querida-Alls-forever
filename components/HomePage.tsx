@@ -154,7 +154,8 @@ export function HomePage() {
                 <p className="mb-6 text-[0.7rem] tracking-[0.5em] uppercase text-gold-hard">
                   Counting the days
                 </p>
-                <p className="font-display text-3xl italic text-foreground"><span>to</span> 
+                <p className="text-[0.7rem] tracking-[0.5em] uppercase text-gold-hard">to</p> 
+                <p className="font-display text-3xl italic text-foreground">
                 6 February 2027</p>
               </div>
               <div className="flex justify-center">
