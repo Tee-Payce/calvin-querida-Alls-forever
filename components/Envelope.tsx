@@ -66,6 +66,8 @@ export function Envelope({ onOpen }: EnvelopeProps) {
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
+                          <motion.span className="relative z-10 text-lg ">Click below To Open </motion.span>
+
             <motion.button
               onClick={handleOpenClick}
               className="relative overflow-hidden rounded-full px-10 py-4 text-sm uppercase tracking-[0.3em] text-ivory cursor-pointer"
@@ -82,7 +84,6 @@ export function Envelope({ onOpen }: EnvelopeProps) {
               whileTap={{ scale: 0.97 }}
             >
               {/* Shimmer sweep */}
-              <motion.span className="relative z-10">Click Here To </motion.span>
               <motion.span
                 className="pointer-events-none absolute inset-0 rounded-full"
                 style={{
