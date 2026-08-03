@@ -82,7 +82,7 @@ export function Envelope({ onOpen }: EnvelopeProps) {
               whileTap={{ scale: 0.97 }}
             >
               {/* Shimmer sweep */}
-              <motion.span className="relative z-10">Click Here To</motion.span>
+              <motion.span className="relative z-10">Click Here To </motion.span>
               <motion.span
                 className="pointer-events-none absolute inset-0 rounded-full"
                 style={{
