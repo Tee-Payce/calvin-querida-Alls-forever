@@ -66,9 +66,9 @@ export function Envelope({ onOpen }: EnvelopeProps) {
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <span className="text-sm uppercase tracking-[0.3em] text-white">
+            {/* <span className="text-sm uppercase tracking-[0.3em] text-white">
               Click below to open
-            </span>
+            </span> */}
 
             <motion.button
               onClick={handleOpenClick}
