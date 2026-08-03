@@ -60,13 +60,15 @@ export function Envelope({ onOpen }: EnvelopeProps) {
         {phase === "idle" && (
           <motion.div
             key="btn"
-            className="absolute inset-x-0 bottom-14 flex justify-center px-4"
+            className="absolute inset-x-0 bottom-14 flex flex-col items-center gap-3 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-                          <motion.span className="relative z-10 text-lg ">Click below To Open </motion.span>
+            <span className="text-sm uppercase tracking-[0.3em] text-white">
+              Click below to open
+            </span>
 
             <motion.button
               onClick={handleOpenClick}
