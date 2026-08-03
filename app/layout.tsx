@@ -21,9 +21,33 @@ const pinyon = Pinyon_Script({
   weight: "400",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://calvin-querida.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Calvin & Querida — 6 February 2027",
   description: "You are cordially invited to celebrate the wedding of Calvin and Querida.",
+  openGraph: {
+    title: "Calvin & Querida — 6 February 2027",
+    description: "You are cordially invited to celebrate the wedding of Calvin and Querida.",
+    url: siteUrl,
+    siteName: "Calvin & Querida",
+    type: "website",
+    images: [
+      {
+        url: "/cc01.JPG",
+        width: 1200,
+        height: 630,
+        alt: "Calvin and Querida",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Calvin & Querida — 6 February 2027",
+    description: "You are cordially invited to celebrate the wedding of Calvin and Querida.",
+    images: ["/cc01.JPG"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
